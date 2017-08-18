@@ -5,33 +5,58 @@ Plotly.d3.csv('XYZ_CSTONE_BONE.csv', function (err, rows) {
     });
   }
 
-  var trace1 = {
-    x: unpack(rows, 'CStoneX'), y: unpack(rows, 'CStoneY'), z: unpack(rows, 'CStoneZ'),
+  var trace0 = {
+    name: 'Area of Interest',
+    x: [1480, 1490],
+    y: [1290, 1300],
+    z: [94, 104],
     mode: 'markers',
     marker: {
-      size: 1.5,
+      size: 2,
+      color: "rgb(0, 0, 0)"
+    },
+    type: 'scatter3d'
+  };
+
+  var trace1 = {
+    name: 'Chipped Stone',
+    x: unpack(rows, 'CStoneX'),
+    y: unpack(rows, 'CStoneY'),
+    z: unpack(rows, 'CStoneZ'),
+    mode: 'markers',
+    marker: {
+      size: 2,
       color: "rgb(172, 122, 0)"
     },
     type: 'scatter3d'
   };
 
   var trace2 = {
-    x: unpack(rows, 'BoneX'), y: unpack(rows, 'BoneY'), z: unpack(rows, 'BoneZ'),
+    name: 'Bone',
+    x: unpack(rows, 'BoneX'),
+    y: unpack(rows, 'BoneY'),
+    z: unpack(rows, 'BoneZ'),
     mode: 'markers',
     marker: {
-      size: 1.5,
+      size: 2,
       color: "rgb(68, 68, 68)"
     },
     type: 'scatter3d'
   };
 
-  var data = [trace1, trace2];
+  var data = [trace0, trace1, trace2];
   var layout = {
-    margin: {
-      l: 0,
-      r: 0,
-      b: 0,
-      t: 0
+    title: 'Hell Gap Scatterplot',
+    scene: {
+      xaxis: {
+        dtick: 1
+      },
+      yaxis: {
+        dtick: 1
+      },
+      zaxis: {
+        dtick: 1
+      }
     }
   };
   Plotly.newPlot('scatterplot', data, layout);
